@@ -7,7 +7,7 @@ class BooksList extends Component {
             <div className="bookshelf-books">
             <ol className="books-grid">
               {this.props.books.map((book) => (<BookCardDesign key = {book.id} 
-                        imageLink = {book.imageLinks.thumbnail} 
+                        imageLink = { book.imageLinks ? book.imageLinks.thumbnail : "" } 
                         title = {book.title} 
                         authors = {Array.isArray(book.authors) ? book.authors : []} 
                         shelf = {book.shelf}

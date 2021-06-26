@@ -1,5 +1,5 @@
 {
-  "name": "Book Shelf_application",
+  "name": "BookShelf_application",
   "author": "Khaled Emad Ibrahim",
   "description": "This is an application created using react.js and it aims to make a collection or a shelf of the books. So, you can search new books which are not in your library, and then choose to mark it as a readed book or a currently reading book, or even a book that you are wishing to read in future. And the library can be changed and edited an anytime. The book are all fetched from an api which is given by udacity.",
   "version": "0.1.0",

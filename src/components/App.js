@@ -6,6 +6,13 @@ import BooksList from './BooksList'
 import SearchBar from './SearchBar'
 
 class BooksApp extends React.Component {
+  
+  shelves = [
+    { title: 'Read', key: 'read' },
+    { title: 'Want To Read', key: 'wantToRead' },
+    { title: 'Currently Reading', key: 'currentlyReading' }
+ ];
+
   state = {
     books : []
   }
@@ -29,7 +36,7 @@ class BooksApp extends React.Component {
       <div className="app">
 
         <Route path = '/search' render = { () => (
-          <SearchBar booksOnShelves = {this.state.books} change = {this.change} />
+          <SearchBar currentBooks = {this.state.books} change = {this.change} />
         )}></Route>
         <Route exact path = '/' render = {() => (
           <div className="list-books">
@@ -38,27 +45,15 @@ class BooksApp extends React.Component {
             </div>
 
             <div className="list-books-content">
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <BooksList books = {this.state.books.filter((book) => 
-                    book.shelf === "currentlyReading"
-                  )}
-                  change = {this.change}/>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <BooksList books = {this.state.books.filter((book) => 
-                    book.shelf === "wantToRead"
-                  )}
-                  change = {this.change}/>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <BooksList books = {this.state.books.filter((book) => 
-                    book.shelf === "read"
-                  )}
-                  change = {this.change}/>
-                </div>
+              {this.shelves.map(obj => (
+                  <div className="bookshelf" key={obj.key} >
+                    <h2 className="bookshelf-title">{obj.title}</h2>
+                    <BooksList books = {this.state.books.filter((book) => 
+                         book.shelf === obj.key
+                          )}
+                     change = {this.change}/>
+                  </div>
+                ))}
             </div>
             <div className="open-search">
               <Link to = '/search' >
